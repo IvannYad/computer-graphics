@@ -1,8 +1,8 @@
 import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import App from "../layout/app/App";
 import FRONTEND_ROUTES from "../common/constants/frontend-routes.constants";
-import Lab1Page from "../../pages/lab1-page/lab1-page";
-import MainPage from "../../pages/main-page/main-page";
+import Lab1Page from "../../pages/lab1-page/Lab1Page";
+import MainPage from "../../pages/main-page/MainPage";
 
 const router = createBrowserRouter(createRoutesFromElements(
     <Route path={FRONTEND_ROUTES.BASE} element={<App />}>

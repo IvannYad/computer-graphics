@@ -1,5 +1,35 @@
 .main-page {
+    .main-page-background-image {
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: url("../../../public/main-page-background.jpg") no-repeat;
+        background-size: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: sticky;
+
+        .main-page-content-title-holder {
+            border: 3px solid #ddddddee;
+            border-radius: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
+            width: fit-content;
+            height: 20%;
+            background-color: rgba(29, 29, 29, 0.795);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            h1{
+                font-size: 42px;
+                font-weight: 500;
+            }
+        }
+    }
+
     .main-page-flex-grid {
+        z-index: 10;
         padding-top: 30px;
         padding-bottom: 30px;
         height: 70vh !important;
