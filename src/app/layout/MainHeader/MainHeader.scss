@@ -1,0 +1,23 @@
+header{
+    width: 100vw;
+    height: 60px;
+    flex-shrink: 0;
+    background: #0E0D0D;
+    display: flex;
+    align-items: center;
+    a {
+        color: #FFF;
+        font-family: Inter;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: normal;
+        margin: 0 0 0 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+#checklist-header-icon{
+    width: auto;
+    height: 90%;
+}
