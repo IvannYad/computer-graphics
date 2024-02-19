@@ -1,16 +1,17 @@
 .lab1-page {
     .lab1-page-flex-grid {
         z-index: 10;
-        padding-top: 20px;
-        padding-bottom: 10px;
-        height: 80vh !important;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        min-height: 80vh !important;
+        height: fit-content;
         margin: auto;
         width: 95%;
         display: flex;
         justify-content: space-between;
 
         .lab1-page-grid-element {
-            height: 100%;
+            min-height: 100% !important;
             position: relative;
             display: flex;
             justify-content: center;
@@ -18,12 +19,12 @@
         }
 
         .lab1-page-grid-element-canvas{
-            width: 65%;
+            width: 62%;
         }
 
         .lab1-page-grid-element-form{
             margin-right: 10px;
-            width: 33%;
+            width: 32%;
         }
     }
 }
