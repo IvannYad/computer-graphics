@@ -1,0 +1,29 @@
+.lab1-page {
+    .lab1-page-flex-grid {
+        z-index: 10;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        height: 80vh !important;
+        margin: auto;
+        width: 95%;
+        display: flex;
+        justify-content: space-between;
+
+        .lab1-page-grid-element {
+            height: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lab1-page-grid-element-canvas{
+            width: 65%;
+        }
+
+        .lab1-page-grid-element-form{
+            margin-right: 10px;
+            width: 33%;
+        }
+    }
+}
