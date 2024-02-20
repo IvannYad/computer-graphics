@@ -7,7 +7,10 @@ type CanvasProps = {
 }
 
 function getCanvasContext(canvasId: string): CanvasRenderingContext2D{
-    const canvas = document.getElementById(canvasId)! as HTMLCanvasElement;
+    let canvas = null;
+    while(canvas === null){
+       canvas = document.getElementById(canvasId) as HTMLCanvasElement;
+    }
     const ctx = canvas.getContext("2d")!;
     return ctx;
 }
@@ -23,7 +26,6 @@ export default function Canvas({ figures }: CanvasProps){
     }, [])
 
     useEffect(() => {
-        console.log("hello");
         console.log(figures);
         const canvasContext = getCanvasContext(canvasId);
         figures && figures.length > 0 && figures.map((figure) => {

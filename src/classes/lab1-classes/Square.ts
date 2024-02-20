@@ -17,8 +17,17 @@ class Square{
 
     public drawSquare(canvasContext: CanvasRenderingContext2D){
         canvasContext.strokeStyle = this._color;
-        canvasContext.lineWidth = 1;
+        canvasContext.lineWidth = 2;
         canvasContext.strokeRect(this._topLeft_X, this._topLeft_Y, this._side, this._side);
+    }
+
+    public getSquareData(): {topLeftX: number, topLeftY: number, side: number, color: string}{
+        return {
+            topLeftX: this._topLeft_X,
+            topLeftY: this._topLeft_Y,
+            side: this._side,
+            color: this._color
+        }
     }
 }
 
