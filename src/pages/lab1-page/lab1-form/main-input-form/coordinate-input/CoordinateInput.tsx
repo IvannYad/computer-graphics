@@ -20,7 +20,7 @@ export default function CoordinateInput({name, label, initialValue}: CoordinateI
                     },
                     ({getFieldValue}) =>({
                         validator(_, value){
-                            if(!value || (getFieldValue("topLeftX") >= -10.00 && getFieldValue("topLeftX") <= 10.00)){
+                            if(!value || (getFieldValue("topLeftX") >= -10.00 && getFieldValue("topLeftX") <= 100.00)){
                                 return Promise.resolve();
                             }
                             return Promise.reject(new Error("Coordinate must be in [-10.00; 10.00]"));
@@ -32,8 +32,6 @@ export default function CoordinateInput({name, label, initialValue}: CoordinateI
             <Input 
                 className="input"
                 type="number"
-                min={-10.00}
-                max={10.00}
                 step={0.01}
             />
         </Form.Item>

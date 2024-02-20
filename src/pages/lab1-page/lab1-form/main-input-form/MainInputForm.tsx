@@ -1,15 +1,41 @@
 import { Button, Form, Input } from "antd";
 import "./MainInputForm.scss"
 import CoordinateInput from "./coordinate-input/CoordinateInput";
+import FigureComplex from "../../../../classes/lab1-classes/FigureComplex";
+import { FigureComplexesContext } from "../../Lab1Page";
+import { useContext } from "react";
 
 export default function MainInputForm(){
     const [form] = Form.useForm();
+    const figureComplexesState = useContext(FigureComplexesContext);
+    function onFormSubmit(){
+        const figureName = form.getFieldValue("figureName");
+        const topLeftX = form.getFieldValue("topLeftX");
+        const topLeftY = form.getFieldValue("topLeftY");
+        const bottomRightX = form.getFieldValue("bottomRightX");
+        const bottomRightY = form.getFieldValue("bottomRightY");
+
+        const sideX = bottomRightX - topLeftX;
+        const sideY = bottomRightY - topLeftY;
+        if(sideX !== sideY){
+            alert("Your figure is not a square! Try again");
+            return;
+        }
+        
+        const newFigure = new FigureComplex(figureName, topLeftX, topLeftY, sideX, "black");
+        console.log(newFigure);
+        figureComplexesState?.setFigureComplexes([
+            ...figureComplexesState.figureComplexes,
+            newFigure
+        ]);
+    }
+
     return (
         <>
             <Form
                     layout="vertical"
                     className="create-figure-form" 
-                    onFinish={() => {}}
+                    onFinish={() => onFormSubmit()}
                     form={form}
                     >
                     <Form.Item

@@ -2,13 +2,15 @@ import Circle from "./Circle";
 import Square from "./Square";
 
 class FigureComplex{
+    private _name: string;
     private _square: Square;
     private _circle: Circle | null = null;
     private _isHorizontallyShaded = false;
     private _isVerticallyShaded = false;
     private _isCircleDrawn = false;
 
-    constructor(topLeft_X: number, topLeft_Y: number, side: number, color: string){
+    constructor(name: string, topLeft_X: number, topLeft_Y: number, side: number, color: string){
+        this._name = name;
         this._square = new Square(topLeft_X, topLeft_Y, side, color);
     }
 

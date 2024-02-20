@@ -7,17 +7,21 @@ type CanvasProps = {
 }
 
 function getCanvasContext(canvasId: string): CanvasRenderingContext2D{
-    const SCALING_FACTOR = 2;
     const canvas = document.getElementById(canvasId)! as HTMLCanvasElement;
     const ctx = canvas.getContext("2d")!;
-    ctx.canvas.width = SCALING_FACTOR * canvas.width;
-    ctx.canvas.height = SCALING_FACTOR * canvas.height;
-    ctx.scale(SCALING_FACTOR, SCALING_FACTOR);
     return ctx;
 }
 
 export default function Canvas({ figures }: CanvasProps){
     const canvasId = useContext(CanvasIdContext);
+    useEffect(() => {
+        const SCALING_FACTOR = 2;
+        const ctx = getCanvasContext(canvasId);
+        ctx.canvas.width = SCALING_FACTOR * ctx.canvas.width;
+        ctx.canvas.height = SCALING_FACTOR * ctx.canvas.height;
+        ctx.scale(SCALING_FACTOR, SCALING_FACTOR);
+    }, [])
+
     useEffect(() => {
         console.log("hello");
         console.log(figures);
@@ -25,7 +29,7 @@ export default function Canvas({ figures }: CanvasProps){
         figures && figures.length > 0 && figures.map((figure) => {
             figure.drawFigureComplex(canvasContext);
         });
-    }, [])
+    }, [figures])
 
     return (
         <div className="canvas-holder">
