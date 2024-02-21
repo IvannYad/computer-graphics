@@ -19,7 +19,7 @@ export const FigureComplexesContext = createContext<FigureComplexesState | null>
 export const CurrentIndexContext = createContext<CurrentIndexState | null>(null);
 
 export default function Lab1Page(){
-    const [figureComplexes, setFigureComplexes] = useState<FigureComplex[]>([ new FigureComplex("bob", 100, 100, 140, "red")]);
+    const [figureComplexes, setFigureComplexes] = useState<FigureComplex[]>([]);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const canvasId = "lab1-canvas";
 

@@ -19,14 +19,14 @@ export default function MainInputForm(){
 
         const sideX = bottomRightX - topLeftX;
         const sideY = bottomRightY - topLeftY;
-        if(sideX === 0 || sideY === 0 || sideX !== sideY){
+        if(sideX === 0 || sideY === 0 || Math.abs(sideX) !== Math.abs(sideY)){
             alert("Your figure is not a square! Try again");
             return;
         }
         
         const singleSerment = LABS_CONSTANTS.LAB1.SINGLE_SEGMENT;
         const initialColor = LABS_CONSTANTS.LAB1.FIGURE_INITIAL_COLOR;
-        const newFigure = new FigureComplex(figureName, topLeftX * singleSerment, topLeftY * singleSerment, sideX * singleSerment, initialColor);
+        const newFigure = new FigureComplex(figureName, topLeftX * singleSerment, -topLeftY * singleSerment, sideX * singleSerment, initialColor);
         const oldLength = figureComplexesState?.figureComplexes.length;
         figureComplexesState?.setFigureComplexes([
             ...figureComplexesState.figureComplexes,

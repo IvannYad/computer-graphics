@@ -51,12 +51,12 @@ export class GridDrawer{
                 ctx.strokeStyle = "#e9e9e9";
             
             if(i == numberOfLines) {
-                ctx.moveTo(0, gridSize*i);
-                ctx.lineTo(canvasWidth, gridSize*i);
+                ctx.moveTo(0 - 400, gridSize*i - 200);
+                ctx.lineTo(canvasWidth - 400, gridSize*i - 200);
             }
             else {
-                ctx.moveTo(0, gridSize*i+0.5);
-                ctx.lineTo(canvasWidth, gridSize*i+0.5);
+                ctx.moveTo(0 - 400, gridSize*i+0.5 - 200);
+                ctx.lineTo(canvasWidth - 400, gridSize*i+0.5 - 200);
             }
             ctx.stroke();
             ctx.closePath();
@@ -76,12 +76,12 @@ export class GridDrawer{
                 ctx.strokeStyle = "#e9e9e9";
             
             if(i == numberOfLines) {
-                ctx.moveTo(gridSize*i, 0);
-                ctx.lineTo(gridSize*i, canvasHeight);
+                ctx.moveTo(gridSize*i - 400, 0 - 200);
+                ctx.lineTo(gridSize*i - 400, canvasHeight - 200);
             }
             else {
-                ctx.moveTo(gridSize*i+0.5, 0);
-                ctx.lineTo(gridSize*i+0.5, canvasHeight);
+                ctx.moveTo(gridSize*i+0.5 - 400, 0 - 200);
+                ctx.lineTo(gridSize*i+0.5 - 400, canvasHeight - 200);
             }
             ctx.stroke();
             ctx.closePath();
@@ -96,14 +96,16 @@ export class GridDrawer{
             ctx.strokeStyle = "#000000";
 
             // Draw a tick mark 6px long (-3 to 3)
-            ctx.moveTo(gridSize*i+0.5, -3 + 200);
-            ctx.lineTo(gridSize*i+0.5, 3 + 200);
+            ctx.moveTo(gridSize*i+0.5, -3);
+            ctx.lineTo(gridSize*i+0.5, 3);
             ctx.stroke();
 
             // Text value at that point
             ctx.font = '9px Arial';
             ctx.textAlign = 'start';
-            ctx.fillText(xAxisStartingPoint.number*i + "", 400 + gridSize*i-2, 200 + 15);
+            ctx.fillStyle = "#000000";
+            ctx.fillText(xAxisStartingPoint.number*i + "", gridSize*i-2, 15);
+            ctx.closePath();
         }
 
         // Ticks marks along the negative X-axis
@@ -113,14 +115,16 @@ export class GridDrawer{
             ctx.strokeStyle = "#000000";
 
             // Draw a tick mark 6px long (-3 to 3)
-            ctx.moveTo(-gridSize*i+0.5, 200 + -3);
-            ctx.lineTo(-gridSize*i+0.5, 200 + 3);
+            ctx.moveTo(-gridSize*i+0.5, -3);
+            ctx.lineTo(-gridSize*i+0.5, 3);
             ctx.stroke();
 
             // Text value at that point
             ctx.font = '9px Arial';
             ctx.textAlign = 'end';
-            ctx.fillText(-xAxisStartingPoint.number*i + "", 400 + -gridSize*i+3, 200 + 15);
+            ctx.fillStyle = "#000000";
+            ctx.fillText(-xAxisStartingPoint.number*i + "", -gridSize*i+3, 15);
+            ctx.closePath();
         }
     }
 
@@ -132,14 +136,16 @@ export class GridDrawer{
             ctx.strokeStyle = "#000000";
 
             // Draw a tick mark 6px long (-3 to 3)
-            ctx.moveTo(-3 + 400, gridSize*i+0.5);
-            ctx.lineTo(3 + 400, gridSize*i+0.5);
+            ctx.moveTo(-3, gridSize*i+0.5);
+            ctx.lineTo(3, gridSize*i+0.5);
             ctx.stroke();
 
             // Text value at that point
             ctx.font = '9px Arial';
             ctx.textAlign = 'start';
-            ctx.fillText(-yAxisStartingPoint.number*i + "", 8 + 400, gridSize*i+3 + 200);
+            ctx.fillStyle = "#000000";
+            ctx.fillText(-yAxisStartingPoint.number*i + "", 8, gridSize*i+3);
+            ctx.closePath();
         }
 
         // Ticks marks along the negative X-axis
@@ -149,14 +155,16 @@ export class GridDrawer{
             ctx.strokeStyle = "#000000";
 
             // Draw a tick mark 6px long (-3 to 3)
-            ctx.moveTo(-3 + 400, -gridSize*i+0.5);
-            ctx.lineTo(3 + 400, -gridSize*i+0.5);
+            ctx.moveTo(-3, -gridSize*i+0.5);
+            ctx.lineTo(3, -gridSize*i+0.5);
             ctx.stroke();
 
             // Text value at that point
             ctx.font = '9px Arial';
             ctx.textAlign = 'end';
-            ctx.fillText(yAxisStartingPoint.number*i + "", 8 + 400, -gridSize*i+3 + 200);
+            ctx.fillStyle = "#000000";
+            ctx.fillText(yAxisStartingPoint.number*i + "", 8, -gridSize*i+3);
+            ctx.closePath();
         }
     }
 }

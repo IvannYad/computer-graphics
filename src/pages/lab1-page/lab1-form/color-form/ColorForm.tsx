@@ -17,6 +17,11 @@ export default function ColorForm(){
             return;
         }
         const currentIndex = currentIndexState?.currentIndex;
+        if(newColor === figures![currentIndex!].getColor()){
+            console.log("dede");
+            return;
+        }
+
         figures![currentIndex!].updateColor(newColor);
         figureComplexesState?.setFigureComplexes([
             ...figures!
