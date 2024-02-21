@@ -79,7 +79,7 @@ export default function MainInputForm(){
                     </div>
                     <Form.Item className="lab1-create-button-holder">
                         <Button htmlType="submit" className="lab1-create-button">
-                            Submit
+                            Create
                         </Button>
                     </Form.Item>
                 </Form>

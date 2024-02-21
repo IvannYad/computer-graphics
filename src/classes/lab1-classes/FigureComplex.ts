@@ -5,6 +5,7 @@ import Square from "./Square";
 
 class FigureComplex{
     private _name: string;
+    private _color: string;
     private _square: Square;
     private _circle: Circle | null = null;
     private _horizonralShades: Line[] = [];
@@ -15,7 +16,16 @@ class FigureComplex{
 
     constructor(name: string, topLeft_X: number, topLeft_Y: number, side: number, color: string){
         this._name = name;
+        this._color = color;
         this._square = new Square(topLeft_X, topLeft_Y, side, color);
+    }
+
+    public getName(){
+        return this._name;
+    }
+
+    public getColor(){
+        return this._color;
     }
 
     public drawCircle(){
@@ -59,6 +69,7 @@ class FigureComplex{
     }
     
     public updateColor(newColor: string){
+        this._color = newColor;
         this._square.updateColor(newColor);
         if(this._isCircleDrawn){
             this._circle?.updateColor(newColor);

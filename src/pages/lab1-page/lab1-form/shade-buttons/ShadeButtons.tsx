@@ -10,7 +10,7 @@ export default function ShadeButtons(){
     function onVerticalShadeButtonClick(){
         const figures = figureComplexesState?.figureComplexes;
         if(!figures || figures.length === 0){
-            alert("You don`t add any gigures on canvas");
+            alert("You don`t add any figures on canvas");
             return;
         }
         const currentIndex = currentIndexState?.currentIndex;
@@ -23,7 +23,7 @@ export default function ShadeButtons(){
     function onHorizontalShadeButtonClick(){
         const figures = figureComplexesState?.figureComplexes;
         if(!figures || figures.length === 0){
-            alert("You don`t add any gigures on canvas");
+            alert("You don`t add any figures on canvas");
             return;
         }
         const currentIndex = currentIndexState?.currentIndex;

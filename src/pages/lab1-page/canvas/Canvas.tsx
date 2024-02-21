@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import FigureComplex from "../../../classes/lab1-classes/FigureComplex"
 import "./Canvas.scss"
 import { CanvasIdContext } from "../Lab1Page";
+import FigureListElement from "./figure-list-element/FigureListElement";
 type CanvasProps = {
     figures: FigureComplex[];
 }
@@ -26,8 +27,11 @@ export default function Canvas({ figures }: CanvasProps){
     }, [])
 
     useEffect(() => {
+        console.log("figures");
         console.log(figures);
         const canvasContext = getCanvasContext(canvasId);
+        canvasContext.clearRect(0, 0, canvasContext.canvas.width, canvasContext.canvas.height);
+
         figures && figures.length > 0 && figures.map((figure) => {
             figure.drawFigureComplex(canvasContext);
         });
@@ -35,7 +39,16 @@ export default function Canvas({ figures }: CanvasProps){
 
     return (
         <div className="canvas-holder">
-            <canvas id={canvasId} className="canvas" width="400" height="200"></canvas>
+            <div>
+                <div className="figuresListHolder">
+                    {figures && figures.length > 0 && figures.map((figure, index) => {
+                        return (
+                            <FigureListElement figureKey={index} figureName={figure.getName()} figureColor={figure.getColor()}></FigureListElement>
+                        )
+                    })}
+                </div>
+                <canvas id={canvasId} className="canvas" width="400" height="200"></canvas>
+            </div>
         </div>
     )   
 }

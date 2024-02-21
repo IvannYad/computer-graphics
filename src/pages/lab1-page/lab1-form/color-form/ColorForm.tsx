@@ -13,7 +13,7 @@ export default function ColorForm(){
         const newColor = form.getFieldValue("borderColor");
         const figures = figureComplexesState?.figureComplexes;
         if(!figures || figures.length === 0){
-            alert("You don`t add any gigures on canvas");
+            alert("You don`t add any figures on canvas");
             return;
         }
         const currentIndex = currentIndexState?.currentIndex;
