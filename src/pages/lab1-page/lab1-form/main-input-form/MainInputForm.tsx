@@ -19,7 +19,7 @@ export default function MainInputForm(){
 
         const sideX = bottomRightX - topLeftX;
         const sideY = bottomRightY - topLeftY;
-        if(sideX !== sideY){
+        if(sideX === 0 || sideY === 0 || sideX !== sideY){
             alert("Your figure is not a square! Try again");
             return;
         }
@@ -53,6 +53,15 @@ export default function MainInputForm(){
                                 { 
                                     required: true, message: 'Please input the figure name!' 
                                 },
+                                () =>({
+                                    validator(_, value){
+                                        if(!value || !figureComplexesState || !figureComplexesState.figureComplexes.find((figure) => figure.getName() === value)){
+                                            console.log("hello");
+                                            return Promise.resolve();
+                                        }
+                                        return Promise.reject(new Error("Cannot insert figure with dublicate name"));
+                                    }
+                                })
                             ]
                         }
                     >
