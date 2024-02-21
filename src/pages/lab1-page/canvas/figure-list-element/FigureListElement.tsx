@@ -10,22 +10,17 @@ type FigureListElementProps = {
 }
 
 export default function FigureListElement({ figureName, figureColor, figureKey }: FigureListElementProps){
-    console.log(figureKey);
     const figureComplexesState = useContext(FigureComplexesContext);
     const currentIndexState = useContext(CurrentIndexContext);
 
     useEffect(() => {
-        console.log(`color-display-${figureName}`);
         const colorDisplay = document.getElementById(`color-display-${figureName}`)!;
-        console.log(figureColor);
         colorDisplay.style.backgroundColor = figureColor;
     }, [figureColor])
 
     function onDeleteButtonClick(){
         let figures = figureComplexesState?.figureComplexes;
         figures = figures?.filter((_, index) => index !== figureKey);
-        console.log(figureKey);
-        console.log(figures);
         figureComplexesState?.setFigureComplexes([
             ...figures!
         ])

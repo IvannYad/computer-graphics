@@ -3,6 +3,7 @@ import FigureComplex from "../../../classes/lab1-classes/FigureComplex"
 import "./Canvas.scss"
 import { CanvasIdContext } from "../Lab1Page";
 import FigureListElement from "./figure-list-element/FigureListElement";
+import { GridDrawer } from "../../../classes/lab1-classes/GridDrawer";
 type CanvasProps = {
     figures: FigureComplex[];
 }
@@ -27,10 +28,10 @@ export default function Canvas({ figures }: CanvasProps){
     }, [])
 
     useEffect(() => {
-        console.log("figures");
-        console.log(figures);
         const canvasContext = getCanvasContext(canvasId);
         canvasContext.clearRect(0, 0, canvasContext.canvas.width, canvasContext.canvas.height);
+        const gridDrawer = new GridDrawer(canvasId);
+        gridDrawer.drawGrid();
 
         figures && figures.length > 0 && figures.map((figure) => {
             figure.drawFigureComplex(canvasContext);
@@ -43,7 +44,7 @@ export default function Canvas({ figures }: CanvasProps){
                 <div className="figuresListHolder">
                     {figures && figures.length > 0 && figures.map((figure, index) => {
                         return (
-                            <FigureListElement figureKey={index} figureName={figure.getName()} figureColor={figure.getColor()}></FigureListElement>
+                            <FigureListElement key={index} figureKey={index} figureName={figure.getName()} figureColor={figure.getColor()}></FigureListElement>
                         )
                     })}
                 </div>
