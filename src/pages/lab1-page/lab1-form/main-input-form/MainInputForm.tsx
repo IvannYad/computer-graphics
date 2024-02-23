@@ -18,8 +18,8 @@ export default function MainInputForm(){
         const bottomRightY = form.getFieldValue("bottomRightY");
 
         const sideX = bottomRightX - topLeftX;
-        const sideY = bottomRightY - topLeftY;
-        if(sideX === 0 || sideY === 0 || Math.abs(sideX) !== Math.abs(sideY)){
+        const sideY = topLeftY - bottomRightY;
+        if(sideX === 0 || sideY === 0 || sideX !== sideY){
             alert("Your figure is not a square! Try again");
             return;
         }
@@ -72,18 +72,18 @@ export default function MainInputForm(){
                     </Form.Item>
                     <div className="coordinate-input-row">
                         <div className="coordinate-input-holder">
-                            <CoordinateInput name="topLeftX" label="Top-left corner( X )" initialValue={null}></CoordinateInput>
+                            <CoordinateInput name="topLeftX" label="Top-left corner( X )" initialValue={null} axis="x"></CoordinateInput>
                         </div>
                         <div className="coordinate-input-holder">
-                            <CoordinateInput name="topLeftY" label="Top-left corner( Y )" initialValue={null}></CoordinateInput>
+                            <CoordinateInput name="topLeftY" label="Top-left corner( Y )" initialValue={null} axis="y"></CoordinateInput>
                         </div>
                     </div>
                     <div className="coordinate-input-row">
                         <div className="coordinate-input-holder">
-                            <CoordinateInput name="bottomRightX" label="Bottom-right corner( X )" initialValue={null}></CoordinateInput>
+                            <CoordinateInput name="bottomRightX" label="Bottom-right corner( X )" initialValue={null} axis="x"></CoordinateInput>
                         </div>
                         <div className="coordinate-input-holder">
-                            <CoordinateInput name="bottomRightY" label="Bottom-right corner( Y )" initialValue={null}></CoordinateInput>
+                            <CoordinateInput name="bottomRightY" label="Bottom-right corner( Y )" initialValue={null} axis="y"></CoordinateInput>
                         </div>
                     </div>
                     <Form.Item className="lab1-create-button-holder">

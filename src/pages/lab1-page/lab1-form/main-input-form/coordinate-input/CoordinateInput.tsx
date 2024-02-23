@@ -4,9 +4,10 @@ type CoordinateInputProps = {
     name: string;
     label: string;
     initialValue: number | null;
+    axis: "x" | "y";
 }
 
-export default function CoordinateInput({name, label, initialValue}: CoordinateInputProps){
+export default function CoordinateInput({name, label, initialValue, axis}: CoordinateInputProps){
     return (
         <Form.Item
             className="figure-name-input-holder"
@@ -20,10 +21,17 @@ export default function CoordinateInput({name, label, initialValue}: CoordinateI
                     },
                     ({getFieldValue}) =>({
                         validator(_, value){
-                            if(!value || (getFieldValue("topLeftX") >= -10.00 && getFieldValue("topLeftX") <= 100.00)){
+                            if(axis === "x"){
+                                if(!value || (getFieldValue(name) >= -20.00 && getFieldValue(name) <= 20.00)){
+                                    return Promise.resolve();
+                                }
+                                return Promise.reject(new Error("X Coordinate must be in [-20.00; 20.00]"));
+                            }
+
+                            if(!value || (getFieldValue(name) >= -10.00 && getFieldValue(name) <= 10.00)){
                                 return Promise.resolve();
                             }
-                            return Promise.reject(new Error("Coordinate must be in [-10.00; 10.00]"));
+                            return Promise.reject(new Error("Y Coordinate must be in [-10.00; 10.00]"));
                         }
                     })
                 ]
