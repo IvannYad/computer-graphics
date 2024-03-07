@@ -1,0 +1,27 @@
+@import "../../../../assets/mixins.scss";
+@import "../../../../assets/variables/colors.scss";
+
+.shade-buttons-row {
+    @include flex-center;
+    gap: 10%;
+    margin-bottom: 10%;
+
+    .lab1-shade-button-holder {
+        width: 45%;
+
+        .shade-button {
+            @include flex-center;
+            border-radius: 20px;
+            width: 100%;
+            border: $lab1-shade-button-font-border-color solid 3px;
+            background-color: #00000000;
+            color: $lab1-shade-button-font-border-color;
+        }
+    
+        .shade-button:hover {
+            border: $lab1-shade-button-font-border-color solid 3px !important;
+            color: $lab1-shade-button-font-border-color !important;
+            background-color: $lab1-shade-button-hover-background-color !important;
+        }
+    }
+}

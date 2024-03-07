@@ -1,0 +1,50 @@
+@import "../../../../assets/mixins.scss";
+
+.apply-color-form {
+    .color-form-row {
+        @include flex-center;
+        gap: 10%;
+        
+        .color-form-element-holder {
+            width: 45%;
+
+            .apply-color-button {
+                width: 100%;
+            }
+
+            .input {
+                @include form-input-font;
+                width: 100%;
+                background: $form-input-background-color !important;
+                border-color: $form-input-font-color;
+            }
+        
+            .input::placeholder {
+                @include form-input-font;
+                font-style: italic !important;
+                color: #a8a8a873;
+                background: $form-input-background-color !important;
+                border-color: $form-input-font-color;
+            }
+        
+            label {
+                @include form-input-label-font;
+            }
+
+            .apply-color-button {
+                @include flex-center;
+                border-radius: 20px;
+                width: 100%;
+                border: $lab1-apply_color-button-font-border-color solid 3px;
+                background-color: #00000000;
+                color: $lab1-apply_color-button-font-border-color;
+            }
+        
+            .apply-color-button:hover {
+                border: $lab1-apply_color-button-font-border-color solid 3px !important;
+                color: $lab1-apply_color-button-font-border-color !important;
+                background-color: $lab1-apply_color-button-hover-background-color !important;
+            }
+        }
+    }
+}

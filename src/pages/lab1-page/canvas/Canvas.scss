@@ -1,0 +1,37 @@
+@import "../../../assets/mixins.scss";
+
+.canvas-holder{
+    @include flex-center;
+    height: 100%;
+    width: 100%;
+    div {
+        width: 100%;
+
+        .canvas {
+            background-color: aliceblue;
+            max-width: 100%;
+        }
+    
+        .figuresListHolder {
+            height: 7vw !important;
+            margin-left: -2px;
+            max-height: 90px;
+            max-width: 94%;
+            background-color: #9b9b9b33;
+            margin-bottom: 2%;
+            border: 3px solid #cacaca9c;
+            border-radius: 15px;
+            display: flex;
+            gap: 2%;
+            justify-content: start;
+            align-items: center;
+            padding-left: 3%;
+            padding-right: 3%;
+            overflow-x: scroll;
+        }
+
+        .figuresListHolder::-webkit-scrollbar { 
+            display: none;
+        }
+    }
+}
