@@ -16,7 +16,7 @@ class Point{
 
     public drawPoint(canvasContext: CanvasRenderingContext2D){
         canvasContext.fillStyle = this._color;
-        canvasContext.fillRect(this._y,this._y,1,1);
+        canvasContext.fillRect(this._x - 2.5,this._y - 2.5,5,5);
     }
 }
 

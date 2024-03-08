@@ -1,12 +1,12 @@
 import { Button, Form, Input } from "antd";
-import "./MainInputForm.scss"
+import "./Lab1MainInputForm.scss"
 import CoordinateInput from "./coordinate-input/CoordinateInput";
 import FigureComplex from "../../../../classes/lab1-classes/FigureComplex";
 import { CurrentIndexContext, FigureComplexesContext } from "../../Lab1Page";
 import { useContext } from "react";
 import LABS_CONSTANTS from "../../../../app/common/constants/labs-constants";
 
-export default function MainInputForm(){
+export default function Lab1MainInputForm(){
     const [form] = Form.useForm();
     const figureComplexesState = useContext(FigureComplexesContext);
     const currentIndexState = useContext(CurrentIndexContext);

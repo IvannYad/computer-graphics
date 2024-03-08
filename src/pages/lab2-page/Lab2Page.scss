@@ -31,6 +31,10 @@
         .lab2-page-grid-element-form{
             margin-right: 10px;
             width: 32%;
+            
+            >div {
+                width: 100%;
+            }
         }
     }
 }

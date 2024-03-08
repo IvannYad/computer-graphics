@@ -18,7 +18,7 @@ class Line{
     }
 
     public drawLine(canvasContext: CanvasRenderingContext2D){
-        canvasContext.fillStyle = this._color;
+        canvasContext.strokeStyle = this._color;
         canvasContext.beginPath();
         canvasContext.moveTo(this._startX, this._startY);
         canvasContext.lineTo(this._endX, this._endY);

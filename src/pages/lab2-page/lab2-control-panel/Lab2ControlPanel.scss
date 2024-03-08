@@ -1,0 +1,8 @@
+@import "../../../assets/mixins.scss";
+@import "../../../assets/variables/colors.scss";
+
+.lab2-title{
+    @include form-input-label-font;
+    font-size: 26px;
+    text-align: center;
+}
