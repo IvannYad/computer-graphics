@@ -17,6 +17,16 @@ export default class BezierCurveFigureComplex{
         this._curveLines = this.GetLinesFromPoints(this.PerformCoordinatesTransition(curvePoints), "red");
     }
 
+    public DrawBezierFigureComplex(canvasContext: CanvasRenderingContext2D){
+        this.DrawControlLines(canvasContext);
+        this.DrawCurveLines(canvasContext);
+        this.DrawControlPoints(canvasContext);
+    }
+
+    public GetControlPoints(): Point[]{
+        return this._controlPoints;
+    }
+
     private DrawControlPoints(canvasContext: CanvasRenderingContext2D){
         this._controlPoints.map(point => point.drawPoint(canvasContext));
     }
@@ -27,12 +37,6 @@ export default class BezierCurveFigureComplex{
 
     private DrawCurveLines(canvasContext: CanvasRenderingContext2D){
         this._curveLines.map(line => line.drawLine(canvasContext));
-    }
-
-    public DrawBezierFigureComplex(canvasContext: CanvasRenderingContext2D){
-        this.DrawControlLines(canvasContext);
-        this.DrawCurveLines(canvasContext);
-        this.DrawControlPoints(canvasContext);
     }
 
     private GetLinesFromPoints(points: PointType[], color: string): Line[]{

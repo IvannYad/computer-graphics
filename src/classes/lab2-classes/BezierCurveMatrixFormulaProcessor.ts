@@ -47,9 +47,8 @@ export default class BezierCurveMatrixFormulaProcessor{
         });
     } 
 
-    private static GetMatrixOfCoeficients(n: number): number[][]{
+    public static GetMatrixOfCoeficients(n: number): number[][]{
         const matrixOfCoefs = new Array(n).fill(0).map(() => new Array(n).fill(0));
-        console.log(matrixOfCoefs);
         for (let i = 0; i < n + 1; i++) {
             for (let j = 0; j < (n) - i; j++) {
                 matrixOfCoefs[i][j] = this.GetMatrixElement(n - 1, i, j);

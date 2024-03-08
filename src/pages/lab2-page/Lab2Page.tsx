@@ -9,7 +9,7 @@ export const CanvasIdContext = createContext<string>('');
 
 export default function Lab2Page(){
     const [bezierCurve, setBezierCurve] = useState<BezierCurveFigureComplex>();
-
+    
     const canvasId = "lab2-canvas";
     useEffect(() => {
         const SCALING_FACTOR = 2;
@@ -42,7 +42,7 @@ export default function Lab2Page(){
                     <canvas id={canvasId} className="canvas" width="400" height="200"></canvas>
                 </div>
                 <div className="lab2-page-grid-element lab2-page-grid-element-form">
-                    <Lab2ControlPanel setBezierCurve={setBezierCurve}></Lab2ControlPanel>
+                    <Lab2ControlPanel bezierCurve={bezierCurve} setBezierCurve={setBezierCurve}></Lab2ControlPanel>
                 </div>
             </div>
         </div>

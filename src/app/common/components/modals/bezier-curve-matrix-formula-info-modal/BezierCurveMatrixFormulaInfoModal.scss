@@ -1,0 +1,134 @@
+@import "../../../../../assets/variables/colors.scss";
+@import "../../../../../assets/mixins.scss";
+
+.bezier-curve-matrix-info-modal {
+    height: 500px;
+    svg {
+        fill: $form-input-font-color;
+    }
+
+    .ant-modal-content {
+        position: relative;
+        height: 100%;
+        border: 2px $form-input-font-color solid; 
+        padding: 0;
+        border-radius: 12px;
+
+        .ant-modal-header {
+            background-color: $form-input-background-color !important;
+            padding-left: 25px;
+            height: 10%;
+            display: flex;
+            align-items: center;
+            margin: 0px;
+            border-bottom: 2px solid $form-input-font-color;
+            border-radius: 10px 10px 0 0;
+
+            .ant-modal-title {
+                color: $form-input-font-color !important;
+            }
+        }
+
+        .ant-modal-body {
+            background-color: $form-input-background-color !important;
+            height: 90%;
+            border-radius: 0 0 10px 10px;
+            padding: 30px;
+
+            .coef-matrix-holder{
+                min-height: 70%;
+                width: 100%;
+                @include flex-center;
+                
+                table {
+                    border-spacing: 3px;
+                    .matr-element {
+                        height: 30px !important;
+                        width: 30px;
+                        text-align: center;
+                        color: $form-input-font-color;
+                        font-size: 18px;
+                        border: 1px solid $form-input-font-color;
+                        border-radius: 5px;
+                    }
+
+                    .red {
+                        border-color: #e72626;
+                        background-color: #f74b4b52;
+                    }
+                }
+            }
+
+            .matr-info-form-holder {
+                @include flex-center;
+                gap: 10%;
+
+                .matr-info-form {
+                    width: 45%;
+    
+                    label {
+                        @include form-input-label-font;
+                    }
+    
+                    .input {
+                        @include form-input-font;
+                        background: $form-input-background-color !important;
+                        border-color: $form-input-font-color;
+                    }
+    
+                    .choose-column-submit-button {
+                        @include flex-center;
+                        border-radius: 20px;
+                        width: 100%;
+                        border: $lab1-apply_color-button-font-border-color solid 3px;
+                        background-color: #00000000;
+                        color: $lab1-apply_color-button-font-border-color;
+                    }
+                
+                    .choose-column-submit-button:hover {
+                        border: $lab1-apply_color-button-font-border-color solid 3px !important;
+                        color: $lab1-apply_color-button-font-border-color !important;
+                        background-color: $lab1-apply_color-button-hover-background-color !important;
+                    }
+                }
+
+                .number-zeros-info-holder {
+                    width: 45%;
+
+                    .count-zeros-button {
+                        @include flex-center;
+                        border-radius: 20px;
+                        width: 100%;
+                        border: $lab1-shade-button-font-border-color solid 3px;
+                        background-color: #00000000;
+                        color: $lab1-shade-button-font-border-color;
+                    }
+                
+                    .count-zeros-button:hover {
+                        border: $lab1-shade-button-font-border-color solid 3px !important;
+                        color: $lab1-shade-button-font-border-color !important;
+                        background-color: $lab1-shade-button-hover-background-color !important;
+                    }
+
+                    .zero-count-display {
+                        border: $form-input-font-color 1px solid;
+                        background-color: #615f5f59;
+                        border-radius: 15px;
+                        height: 40px;
+                        width: 100%;
+                        text-align: center;
+                        padding-top: 5%;
+                        margin-bottom: 13px;
+                        @include form-input-label-font;
+                        font-size: 22px;
+                    }
+                }
+            }
+        }
+            
+
+        .ant-modal-footer {
+            height: 0;
+        }
+    }
+}
