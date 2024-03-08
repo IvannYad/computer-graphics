@@ -1,7 +1,7 @@
 import LABS_CONSTANTS from "../../app/common/constants/labs-constants";
-import Circle from "./Circle";
-import Line from "./Line";
-import Square from "./Square";
+import Circle from "../figure-primitives/Circle";
+import Line from "../figure-primitives/Line";
+import Square from "../figure-primitives/Square";
 
 class FigureComplex{
     private _name: string;

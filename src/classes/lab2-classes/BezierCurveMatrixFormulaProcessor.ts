@@ -1,8 +1,8 @@
-import { Point } from "./Point";
+import { PointType } from "../figure-primitives/Point";
 
 export default class BezierCurveMatrixFormulaProcessor{
-    public static GetCurvePoints(numberOfIntervals: number, controlPoints: Point[]): Point[]{
-        const formulsCoefs: Point[] = this.GetFormulaCoeficients(controlPoints);
+    public static GetCurvePoints(numberOfIntervals: number, controlPoints: PointType[]): PointType[]{
+        const formulsCoefs: PointType[] = this.GetFormulaCoeficients(controlPoints);
         const curvePoints = new Array(numberOfIntervals + 1).fill(0);
         const step = 1.0 / numberOfIntervals;
         let t = 0;
@@ -10,7 +10,7 @@ export default class BezierCurveMatrixFormulaProcessor{
             const arrayOfT = this.GetArrayOfT(controlPoints.length - 1, t);
             const elementX = this.MultiplyMatrices(arrayOfT, formulsCoefs.map((point) => new Array(1).fill(point.x)));
             const elementY = this.MultiplyMatrices(arrayOfT, formulsCoefs.map((point) => new Array(1).fill(point.y)));
-            const point: Point = {
+            const point: PointType = {
                 x: elementX[0][0],
                 y: elementY[0][0],
             }
@@ -28,7 +28,7 @@ export default class BezierCurveMatrixFormulaProcessor{
         .fill(0).map((_, index) => Math.pow(t, n - index)));
     }
 
-    private static GetFormulaCoeficients(controlPoints: Point[]): Point[]{
+    private static GetFormulaCoeficients(controlPoints: PointType[]): PointType[]{
         const matrixOfCoefs = this.GetMatrixOfCoeficients(controlPoints.length);
         const coefsX = this.MultiplyMatrices(
             matrixOfCoefs, 
@@ -38,7 +38,7 @@ export default class BezierCurveMatrixFormulaProcessor{
             new Array(controlPoints.length).fill(0).map((_, index) => new Array(1).fill(controlPoints[index].y)));
 
         return new Array(controlPoints.length).fill(0).map((_, index) => {
-            const point: Point = {
+            const point: PointType = {
                 x: coefsX[index][0],
                 y: coefsY[index][0],
             }
