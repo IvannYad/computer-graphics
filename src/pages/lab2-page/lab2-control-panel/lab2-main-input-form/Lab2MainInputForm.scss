@@ -9,6 +9,12 @@
         @include form-input-label-font;
     }
 
+    .coordinates-input-holder {
+        .coordinate-input {
+            resize: none;
+        }
+    }
+
     .lab2-create-button-holder{
         @include flex-center;
         gap: 10%;
