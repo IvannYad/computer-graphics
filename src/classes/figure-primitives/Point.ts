@@ -16,7 +16,10 @@ class Point{
 
     public drawPoint(canvasContext: CanvasRenderingContext2D){
         canvasContext.fillStyle = this._color;
-        canvasContext.fillRect(this._x - 2.5,this._y - 2.5,5,5);
+        canvasContext.beginPath();
+        canvasContext.arc(this._x, this._y, 2, 0, Math.PI * 2); // Outer circle
+        canvasContext.fill();
+        canvasContext.closePath();
     }
 }
 

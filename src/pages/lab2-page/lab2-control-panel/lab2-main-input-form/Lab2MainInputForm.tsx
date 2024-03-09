@@ -4,6 +4,7 @@ import TextArea from "antd/es/input/TextArea";
 import { PointType } from "../../../../classes/figure-primitives/Point";
 import BezierCurveFigureComplex from "../../../../classes/lab2-classes/BezierCurveFigureComplex";
 import BezierCurveMatrixFormulaProcessor from "../../../../classes/lab2-classes/BezierCurveMatrixFormulaProcessor";
+import BezierCurveParametricFormulaProcessor from "../../../../classes/lab2-classes/BezierCurveParametricFormulaProcessor";
 
 type Lab2MainInputFormProps = {
     setBezierCurve: React.Dispatch<React.SetStateAction<BezierCurveFigureComplex | undefined>>;
@@ -13,7 +14,6 @@ export default function Lab2MainInputForm({ setBezierCurve }: Lab2MainInputFormP
     const [form] = Form.useForm();
     function onFormSubmit(){
         form.validateFields();
-        console.log(form.getFieldsValue());
         let controlPoints: PointType[];
 
         try {
@@ -58,9 +58,16 @@ export default function Lab2MainInputForm({ setBezierCurve }: Lab2MainInputFormP
             return;
         }
 
-        const curvePoints = BezierCurveMatrixFormulaProcessor.GetCurvePoints(1000, controlPoints);
+        let curvePoints: PointType[]; 
+        if(form.getFieldValue("isMatrixFormula")) {
+            console.log("Matrix");
+            curvePoints = BezierCurveMatrixFormulaProcessor.GetCurvePoints(1000, controlPoints);
+        }
+        else{
+            curvePoints = BezierCurveParametricFormulaProcessor.GetCurvePoints(1000, controlPoints);
+        }
+
         const bezierCurve = new BezierCurveFigureComplex(controlPoints, curvePoints);
-        console.log(controlPoints);
         setBezierCurve(bezierCurve);
     }
 
@@ -94,8 +101,8 @@ export default function Lab2MainInputForm({ setBezierCurve }: Lab2MainInputFormP
                 <div className="lab2-create-button-holder">
                     <div className="lab2-switch-holder">
                         Parameter
-                        <Form.Item name="sw" initialValue={false}>
-                            <Switch onChange={() => console.log(form.getFieldsValue())}></Switch>
+                        <Form.Item name="isMatrixFormula" initialValue={false}>
+                            <Switch></Switch>
                         </Form.Item>
                         Matrix
                     </div>

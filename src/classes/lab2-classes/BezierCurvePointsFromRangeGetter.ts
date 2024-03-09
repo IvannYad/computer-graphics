@@ -3,7 +3,6 @@ import { PointType } from "../figure-primitives/Point";
 export default class BezierCurvePointsFromRangeGetter{
     public static GetPoints(lower: number, upper: number, count: number, curvePoints: PointType[]): PointType[]{
         const allCurvePointsInRange = this.GetAllCurvePointsFromRange(lower, upper, curvePoints);
-        console.log(allCurvePointsInRange);
         if(allCurvePointsInRange.length < 1){
             throw new Error("No points are in selected range");
         }
@@ -25,7 +24,6 @@ export default class BezierCurvePointsFromRangeGetter{
             resultPoints.push(allCurvePointsInRange[Math.floor(i + 0.5)]);
         }
 
-        console.log(resultPoints);
         return resultPoints;
     }
 

@@ -42,11 +42,11 @@ export default function BezierCurveMatrixFormulaInfoModal({ isModalOpen, coefMat
                             <tbody>
                                 {coefMatrix.map(row => {
                                     return (
-                                        <tr>
+                                        <tr key={row[0]}>
                                             {
                                                 row.map((cell, index) => {
                                                     return (
-                                                        <td className={`matr-element ${index + 1 == chosenColumn ? "red" : ""}`}>{cell}</td>
+                                                        <td key={index} className={`matr-element ${index + 1 == chosenColumn ? "red" : ""}`}>{cell}</td>
                                                     )
                                                 })
                                             }

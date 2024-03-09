@@ -4,19 +4,20 @@ import RangeBoundInput from "./range-bound-input/RangeBoundInput";
 import BezierCurveFigureComplex from "../../../../classes/lab2-classes/BezierCurveFigureComplex";
 import BezierCurvePointsFromRangeGetter from "../../../../classes/lab2-classes/BezierCurvePointsFromRangeGetter";
 import { PointType } from "../../../../classes/figure-primitives/Point";
-import { useState } from "react";
 import BezierCurvePointsInRangeCoordinatesModal from "../../../../app/common/components/modals/bezier-curve-points-in-range-coordinates-modal/BezierCurvePointsInRangeCoordinatesModal";
+import { useState } from "react";
 
 
 type Lab2RangeInputFormProps = {
     bezierCurve: BezierCurveFigureComplex | undefined;
+    setRangePoints: React.Dispatch<React.SetStateAction<PointType[]>>;
+    rangePoints: PointType[];
 }
 
-export default function Lab2RangeInputtForm({ bezierCurve }: Lab2RangeInputFormProps){
+export default function Lab2RangeInputForm({ bezierCurve, rangePoints, setRangePoints }: Lab2RangeInputFormProps){
     const [form] = Form.useForm();
-    const [pointsInRange, setPointsInRange] = useState<PointType[]>();
     const [isModalOpen, setIsModalOpen] = useState(false);
-
+    
     function onFormSubmit(){
         if(!bezierCurve){
             alert("You haven't entered curve!");
@@ -28,7 +29,13 @@ export default function Lab2RangeInputtForm({ bezierCurve }: Lab2RangeInputFormP
             upperBound,
             pointsCount,
         } = form.getFieldsValue();
-        if(form.getFieldValue("lowerBound") >= form.getFieldValue("upperBound")){
+
+        if(pointsCount === 0){
+            setRangePoints(() => []);
+            return;
+        }
+
+        if(Number(lowerBound) >= Number(upperBound)){
             alert("Lower bound cannot be greater than upper bound");
             return;
         }
@@ -36,7 +43,7 @@ export default function Lab2RangeInputtForm({ bezierCurve }: Lab2RangeInputFormP
         try {
             const points = BezierCurvePointsFromRangeGetter
                 .GetPoints(lowerBound, upperBound, pointsCount, bezierCurve.GetCurvePointTypes());
-            setPointsInRange(() => points);
+            setRangePoints(() => points);
             setIsModalOpen(true);
         } catch (error) {
             alert(error);
@@ -78,7 +85,7 @@ export default function Lab2RangeInputtForm({ bezierCurve }: Lab2RangeInputFormP
                         className="input"
                         type="number"
                         step={0.01}
-                        min={1}
+                        min={0}
                         max={100}
                     />
                 </Form.Item>
@@ -87,7 +94,7 @@ export default function Lab2RangeInputtForm({ bezierCurve }: Lab2RangeInputFormP
                     </Button>
                 </div>
             </Form>
-            < BezierCurvePointsInRangeCoordinatesModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} points={pointsInRange}/>
+            < BezierCurvePointsInRangeCoordinatesModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} points={rangePoints}/>
         </>
     )   
 }
