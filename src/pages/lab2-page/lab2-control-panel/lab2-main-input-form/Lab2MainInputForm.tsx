@@ -14,15 +14,34 @@ export default function Lab2MainInputForm({ setBezierCurve }: Lab2MainInputFormP
     function onFormSubmit(){
         form.validateFields();
         console.log(form.getFieldsValue());
-        const controlPoints = (form.getFieldValue("coordinates") as string)
+        let controlPoints: PointType[];
+
+        try {
+            controlPoints = (form.getFieldValue("coordinates") as string)
             .split("\n")
             .map(elem => {
+                const stringX = elem.split(";")[0];
+                const stringY = elem.split(";")[1];
+                if(!stringX || !stringY){
+                    throw new Error("You entered wrong data. TRY AGAIN!");
+                }
+
+                const x = Number(stringX);
+                const y = Number(stringY);
+                if((x !== x) || (y !== y)){
+                    throw new Error("You entered wrong data. TRY AGAIN!");
+                }
+
                 const point: PointType = {
                     x: Number(elem.split(";")[0]),
                     y: Number(elem.split(";")[1]),
                 }
                 return point;
             });
+        } catch (error) {
+            alert(error);
+            return;
+        }
         
         if(controlPoints.length < 2){
             alert("You must enter minimum 2 coordinates");
