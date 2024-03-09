@@ -9,16 +9,6 @@
         @include form-input-label-font;
     }
 
-    .input {
-        @include form-input-font;
-        background: $form-input-background-color !important;
-        border-color: $form-input-font-color;
-    }
-
-    .input::placeholder{
-        color: $form-input-placeholder-font-color;
-    }
-
     .lab2-create-button-holder{
         @include flex-center;
         gap: 10%;
@@ -36,7 +26,7 @@
             margin: 0;
 
             .ant-form-item-control-input-content {
-                color: $form-input-font-color !important;
+                color: $form-input-font-border-color !important;
 
                 button {
                     margin-left: 5px;

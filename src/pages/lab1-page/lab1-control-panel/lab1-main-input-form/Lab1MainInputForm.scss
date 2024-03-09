@@ -5,18 +5,12 @@
     width: 100%;
     margin-bottom: 15%;
 
-    .input {
-        @include form-input-font;
-        background: $form-input-background-color !important;
-        border-color: $form-input-font-color;
-    }
-
     .input::placeholder {
         @include form-input-font;
         font-style: italic !important;
-        color: #a8a8a873;
+        color: $form-input-placeholder-font-color;
         background: $form-input-background-color !important;
-        border-color: $form-input-font-color;
+        border-color: $form-input-font-border-color;
     }
 
     label {

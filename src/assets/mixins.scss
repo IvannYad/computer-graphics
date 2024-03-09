@@ -7,7 +7,7 @@
 }
 
 @mixin form-input-font{
-    color: $form-input-font-color;
+    color: $form-input-font-border-color;
     font-family: Inter;
     font-size: 16px;
     font-style: normal;
@@ -16,7 +16,7 @@
 }
 
 @mixin form-input-label-font{
-    color: $form-input-font-color !important;
+    color: $form-input-font-border-color !important;
     font-family: Inter;
     font-size: 18px;
     font-style: normal;

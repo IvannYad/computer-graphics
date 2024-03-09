@@ -16,7 +16,7 @@
                 @include form-input-font;
                 width: 100%;
                 background: $form-input-background-color !important;
-                border-color: $form-input-font-color;
+                border-color: $form-input-font-border-color;
             }
         
             .input::placeholder {
@@ -24,7 +24,7 @@
                 font-style: italic !important;
                 color: #a8a8a873;
                 background: $form-input-background-color !important;
-                border-color: $form-input-font-color;
+                border-color: $form-input-font-border-color;
             }
         
             label {

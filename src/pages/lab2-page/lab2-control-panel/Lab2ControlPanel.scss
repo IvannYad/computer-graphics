@@ -16,10 +16,17 @@
     border: $lab1-draw_circle-button-font-border-color solid 3px;
     color: $lab1-draw_circle-button-font-border-color;
     text-wrap: wrap;
+    margin-bottom: 40px;
 }
 
 .show-matrix-info-button:hover {
     border: $lab1-draw_circle-button-font-border-color solid 3px !important;
     color: $lab1-draw_circle-button-font-border-color !important;
     background-color: $lab1-draw_circle-button-hover-background-color !important;
+}
+
+.show-matrix-info-button:focus {
+    border: $lab1-draw_circle-button-font-border-color solid 3px !important;
+    color: $lab1-draw_circle-button-font-border-color !important;
+    background-color: #00000000 !important;
 }

@@ -5,6 +5,7 @@ import Lab2MainInputForm from "./lab2-main-input-form/Lab2MainInputForm"
 import BezierCurveMatrixFormulaInfoModal from "../../../app/common/components/modals/bezier-curve-matrix-formula-info-modal/BezierCurveMatrixFormulaInfoModal";
 import { useState } from "react";
 import BezierCurveMatrixFormulaProcessor from "../../../classes/lab2-classes/BezierCurveMatrixFormulaProcessor";
+import Lab2RangeInputtForm from "./lab2-range-input-form/Lab2RangeInputForm";
 
 type Lab2ControlPanelProps = {
     setBezierCurve: React.Dispatch<React.SetStateAction<BezierCurveFigureComplex | undefined>>;
@@ -23,6 +24,7 @@ export default function Lab2ControlPanel({ setBezierCurve, bezierCurve }: Lab2Co
             <Lab2MainInputForm setBezierCurve={setBezierCurve}/>
             <Button className="show-matrix-info-button" onClick={() => setIsModalOpen(true)}>Show matrix info</Button>
             <BezierCurveMatrixFormulaInfoModal isModalOpen={isModalOpen} coefMatrix={coefMatrix} setIsModalOpen={setIsModalOpen}/>
+            <Lab2RangeInputtForm bezierCurve={bezierCurve}/>
         </div>
     )   
 }

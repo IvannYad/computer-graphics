@@ -34,7 +34,7 @@ export default function BezierCurveMatrixFormulaInfoModal({ isModalOpen, coefMat
                 <></>
             )}
         >
-            {!coefMatrix ? <div>Empty matrix</div> : 
+            {!coefMatrix ? <div className="empty-matrix-message-holder">Empty matrix</div> : 
                 <>
                     <div className="coef-matrix-holder">
                         <table>
@@ -45,7 +45,6 @@ export default function BezierCurveMatrixFormulaInfoModal({ isModalOpen, coefMat
                                         <tr>
                                             {
                                                 row.map((cell, index) => {
-                                                    console.log(chosenColumn, index);
                                                     return (
                                                         <td className={`matr-element ${index + 1 == chosenColumn ? "red" : ""}`}>{cell}</td>
                                                     )

@@ -58,7 +58,7 @@ export default function Lab2MainInputForm({ setBezierCurve }: Lab2MainInputFormP
             return;
         }
 
-        const curvePoints = BezierCurveMatrixFormulaProcessor.GetCurvePoints(40, controlPoints);
+        const curvePoints = BezierCurveMatrixFormulaProcessor.GetCurvePoints(1000, controlPoints);
         const bezierCurve = new BezierCurveFigureComplex(controlPoints, curvePoints);
         console.log(controlPoints);
         setBezierCurve(bezierCurve);

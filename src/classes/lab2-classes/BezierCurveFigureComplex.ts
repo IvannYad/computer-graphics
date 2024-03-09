@@ -3,15 +3,18 @@ import Point, { PointType } from "../figure-primitives/Point";
 
 export default class BezierCurveFigureComplex{
     private _controlPoints: Point[];
+    private _controlPointTypes: PointType[];
+    private _curvePointTypes: PointType[];
     private _controlLines: Line[];
     private _curveLines: Line[];
     
     constructor(controlPoints: PointType[], curvePoints: PointType[]){
-        controlPoints = this.PerformCoordinatesTransition(controlPoints);
-        this._controlPoints = controlPoints
+        this._controlPointTypes = this.PerformCoordinatesTransition(controlPoints);
+        this._controlPoints = this._controlPointTypes
             .map(point => new Point(point.x, point.y, "#E37316"));
 
-        this._controlLines = this.GetLinesFromPoints(controlPoints, "black");
+        this._curvePointTypes = curvePoints;
+        this._controlLines = this.GetLinesFromPoints(this._controlPointTypes, "black");
         this._controlLines[0].updateColor("#0974AA");
         this._controlLines[this._controlLines.length - 1].updateColor("#0974AA");
         this._curveLines = this.GetLinesFromPoints(this.PerformCoordinatesTransition(curvePoints), "red");
@@ -25,6 +28,10 @@ export default class BezierCurveFigureComplex{
 
     public GetControlPoints(): Point[]{
         return this._controlPoints;
+    }
+
+    public GetCurvePointTypes(): PointType[]{
+        return this._curvePointTypes;
     }
 
     private DrawControlPoints(canvasContext: CanvasRenderingContext2D){
