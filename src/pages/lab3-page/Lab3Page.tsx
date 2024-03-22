@@ -2,9 +2,12 @@ import { useEffect } from "react";
 import "./Lab3Page.scss"
 import getCanvasContext from "../../classes/canvas/getCanvasContext";
 import Lab3ControlPanel from "./lab3-control-panel/Lab3ControlPanel";
+import FractalsDrawersContext from "../../classes/lab3-classes/FractalDrawersContext";
+import SerpinskiyTriangleDrawer from "../../classes/lab3-classes/SerpinskiyTriangleDrawer";
+import ResetCanvas from "../../classes/canvas/ResetCanvas";
 
 
-export default function Lab2Page(){
+export default function Lab3Page(){
     const canvasId = "lab3-canvas";
     
     useEffect(() => {
@@ -18,18 +21,25 @@ export default function Lab2Page(){
         console.log(transX);
         console.log(transY);
         ctx.translate(transX, transY);
+        ResetCanvas(ctx, canvasId);
     }, [])
 
+    const fractalsDrawersContextValues = {
+        serpinskiyTriangleDrawer: new SerpinskiyTriangleDrawer(),
+    }
+
     return (
-        <div className="page lab3-page">
-            <div className="lab3-page-flex-grid">
-                <div className="lab3-page-grid-element lab3-page-grid-element-canvas">
-                    <canvas id={canvasId} className="canvas" width="400" height="200"></canvas>
-                </div>
-                <div className="lab3-page-grid-element lab3-page-grid-control-panel">
-                    <Lab3ControlPanel></Lab3ControlPanel>
+        <FractalsDrawersContext.Provider value={fractalsDrawersContextValues}>
+            <div className="page lab3-page">
+                <div className="lab3-page-flex-grid">
+                    <div className="lab3-page-grid-element lab3-page-grid-element-canvas">
+                        <canvas id={canvasId} className="canvas" width="400" height="200"></canvas>
+                    </div>
+                    <div className="lab3-page-grid-element lab3-page-grid-control-panel">
+                        <Lab3ControlPanel></Lab3ControlPanel>
+                    </div>
                 </div>
             </div>
-        </div>
+        </FractalsDrawersContext.Provider>
     )   
 }

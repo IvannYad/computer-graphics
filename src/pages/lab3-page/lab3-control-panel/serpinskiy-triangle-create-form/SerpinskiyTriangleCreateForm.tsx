@@ -1,6 +1,11 @@
 import { Button, Form } from "antd";
 import "./SerpinskiyTriangleCreateForm.scss"
 import NumberInput from "../../../../app/common/components/number-input/NumberInput";
+import { TriangleCoordinates } from "../../../../classes/lab3-classes/TriangleCoordinates";
+import { ConvertToTriangleCoordinates } from "../../../../functions/ConvertToCoordinates";
+import useFractalsDrawersContext from "../../../../hooks/useFractalsDrawersContext";
+import getCanvasContext from "../../../../classes/canvas/getCanvasContext";
+import ResetCanvas from "../../../../classes/canvas/ResetCanvas";
 
 type SerpinskiyTriangleCreateFormProps = {
     isOpen: boolean;
@@ -8,8 +13,23 @@ type SerpinskiyTriangleCreateFormProps = {
 
 export default function SerpinskiyTriangleCreateForm({ isOpen }: SerpinskiyTriangleCreateFormProps){
     const [form] = Form.useForm();
-    function onFormSubmit(){
+    const { serpinskiyTriangleDrawer } = useFractalsDrawersContext();
+    async function onFormSubmit(){
+        const canvasId = "lab3-canvas";
         form.validateFields();
+
+        const context = getCanvasContext(canvasId);
+
+        const coordinates: TriangleCoordinates = ConvertToTriangleCoordinates(
+            form.getFieldValue("x1"), form.getFieldValue("y1"),
+            form.getFieldValue("x2"), form.getFieldValue("y2"),
+            form.getFieldValue("x3"), form.getFieldValue("y3"),
+        );
+
+        console.log(coordinates);
+        ResetCanvas(context, canvasId);
+        serpinskiyTriangleDrawer.SetParameters(context, coordinates, form.getFieldValue("depth"));
+        await serpinskiyTriangleDrawer.DrawAsync();
     }
 
     if (!isOpen) {
