@@ -3,18 +3,10 @@ import FigureComplex from "../../../classes/lab1-classes/FigureComplex"
 import "./Canvas.scss"
 import { CanvasIdContext } from "../Lab1Page";
 import FigureListElement from "./figure-list-element/FigureListElement";
-import { GridDrawer } from "../../../classes/lab1-classes/GridDrawer";
+import { GridDrawer } from "../../../classes/canvas/GridDrawer";
+import getCanvasContext from "../../../classes/canvas/getCanvasContext";
 type CanvasProps = {
     figures: FigureComplex[];
-}
-
-function getCanvasContext(canvasId: string): CanvasRenderingContext2D{
-    let canvas = null;
-    while(canvas === null){
-       canvas = document.getElementById(canvasId) as HTMLCanvasElement;
-    }
-    const ctx = canvas.getContext("2d")!;
-    return ctx;
 }
 
 export default function Canvas({ figures }: CanvasProps){

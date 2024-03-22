@@ -1,0 +1,70 @@
+@import "../../../../../assets/variables/colors.scss";
+@import "../../../../../assets/mixins.scss";
+
+.bezier-curve-points-in-range-modal {
+    height: 500px;
+    svg {
+        fill: $form-input-font-border-color;
+    }
+
+    .ant-modal-content {
+        position: relative;
+        height: 100%;
+        border: 2px $form-input-font-border-color solid; 
+        padding: 0;
+        border-radius: 12px;
+
+        .ant-modal-header {
+            background-color: $form-input-background-color !important;
+            padding-left: 25px;
+            height: 10%;
+            display: flex;
+            align-items: center;
+            margin: 0px;
+            border-bottom: 2px solid $form-input-font-border-color;
+            border-radius: 10px 10px 0 0;
+
+            .ant-modal-title {
+                color: $form-input-font-border-color !important;
+            }
+        }
+
+        .ant-modal-body {
+            background-color: $form-input-background-color !important;
+            height: 90%;
+            border-radius: 0 0 10px 10px;
+            padding: 30px;
+            @include flex-center;
+
+            .points-list-holder {
+                height: 300px;
+                width: 400px;
+                border-radius: 10px;
+                border: 1px solid $form-input-font-border-color;
+                overflow-y: scroll;
+
+                .points-list {
+                    list-style: none;
+                    padding: 20px;
+                    margin: 0px;
+
+                    li {
+                        color: $form-input-font-border-color;
+                        font-size: 16px;
+                        text-align: center;
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+
+            .points-list-holder::-webkit-scrollbar {
+                display: none;
+            }
+        }
+            
+
+        .ant-modal-footer {
+            height: 0;
+        }
+    }
+}

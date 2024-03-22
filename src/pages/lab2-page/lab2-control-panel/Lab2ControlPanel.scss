@@ -1,0 +1,32 @@
+@import "../../../assets/mixins.scss";
+@import "../../../assets/variables/colors.scss";
+
+.lab2-title{
+    @include form-input-label-font;
+    font-size: 26px;
+    text-align: center;
+}
+
+.show-matrix-info-button {
+    @include flex-center;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    background-color: #00000000;
+    border: $lab1-draw_circle-button-font-border-color solid 3px;
+    color: $lab1-draw_circle-button-font-border-color;
+    text-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.show-matrix-info-button:hover {
+    border: $lab1-draw_circle-button-font-border-color solid 3px !important;
+    color: $lab1-draw_circle-button-font-border-color !important;
+    background-color: $lab1-draw_circle-button-hover-background-color !important;
+}
+
+.show-matrix-info-button:focus {
+    border: $lab1-draw_circle-button-font-border-color solid 3px !important;
+    color: $lab1-draw_circle-button-font-border-color !important;
+    background-color: #00000000 !important;
+}

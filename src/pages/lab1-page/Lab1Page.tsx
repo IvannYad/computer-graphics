@@ -1,7 +1,7 @@
 import { createContext, useState } from "react"
 import "./Lab1Page.scss"
 import Canvas from "./canvas/Canvas"
-import Lab1Form from "./lab1-form/Lab1Form"
+import Lab1Form from "./lab1-control-panel/Lab1ControlPanel"
 import FigureComplex from "../../classes/lab1-classes/FigureComplex"
 
 export type FigureComplexesState = {

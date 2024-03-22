@@ -1,0 +1,67 @@
+@import "../../../../assets/variables/colors.scss";
+@import "../../../../assets/mixins.scss";
+
+.create-curve-form {
+    width: 100%;
+    margin-bottom: 15%;
+    
+    label {
+        @include form-input-label-font;
+    }
+
+    .coordinates-input-holder {
+        .coordinate-input {
+            resize: none;
+        }
+    }
+
+    .lab2-create-button-holder{
+        @include flex-center;
+        gap: 10%;
+
+        .lab2-switch-holder {
+            @include form-input-label-font;
+            @include flex-center;
+
+            .ant-form-item {
+                margin: 0px;
+            }
+        }
+
+        > div {
+            margin: 0;
+
+            .ant-form-item-control-input-content {
+                color: $form-input-font-border-color !important;
+
+                button {
+                    margin-left: 5px;
+                    margin-right: 5px;
+                    background-color: $form-input-background-color;
+                }
+
+                button.ant-switch-checked {
+                    background-color: $lab1-create-button-hover-background-color;
+                    border-color: $lab1-create-button-font-border-color !important;
+                }
+            }
+        }
+    }
+
+    .lab2-create-button {
+        @include flex-center;
+        border-radius: 20px;
+        height: 100%;
+        width: 45%;
+        border: $lab1-create-button-font-border-color solid 3px;
+        background-color: #00000000;
+        color: $lab1-create-button-font-border-color;
+        text-wrap: wrap;
+    }
+
+    .lab2-create-button:hover {
+        border: $lab1-create-button-font-border-color solid 3px !important;
+        color: $lab1-create-button-font-border-color !important;
+        background-color: $lab1-create-button-hover-background-color !important;
+    }
+}

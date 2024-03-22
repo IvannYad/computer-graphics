@@ -1,0 +1,40 @@
+.lab2-page {
+    .lab2-page-flex-grid {
+        z-index: 10;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        min-height: 80vh !important;
+        height: fit-content;
+        margin: auto;
+        width: 95%;
+        display: flex;
+        justify-content: space-between;
+
+        .lab2-page-grid-element {
+            min-height: 100% !important;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lab2-page-grid-element-canvas{
+            width: 62%;
+            
+            .canvas {
+                width: 100%;
+                background-color: aliceblue;
+                max-width: 100%;
+            }
+        }
+
+        .lab2-page-grid-element-form{
+            margin-right: 10px;
+            width: 32%;
+            
+            >div {
+                width: 100%;
+            }
+        }
+    }
+}

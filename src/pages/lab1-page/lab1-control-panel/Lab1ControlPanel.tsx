@@ -1,13 +1,13 @@
 import { Button } from "antd"
-import "./Lab1Form.scss"
+import "./Lab1ControlPanel.scss"
 import ColorForm from "./color-form/ColorForm"
-import MainInputForm from "./main-input-form/MainInputForm"
+import MainInputForm from "./lab1-main-input-form/Lab1MainInputForm"
 import ShadeButtons from "./shade-buttons/ShadeButtons"
 import { useContext } from "react"
 import { CurrentIndexContext, FigureComplexesContext } from "../Lab1Page"
 
 
-export default function Lab1Form(){
+export default function Lab1ControlPanel(){
     const figureComplexesState = useContext(FigureComplexesContext);
     const currentIndexState = useContext(CurrentIndexContext);
 

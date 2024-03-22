@@ -1,0 +1,26 @@
+@import "../../../../assets/mixins.scss";
+
+.range-bounds-form {
+    .range-bounds-input-form-row {
+        @include flex-center;
+        gap: 10%;
+
+        .range-bounds-input-holder {
+            width: 45%;
+        }
+
+        .range-form-submit-button {
+            @include flex-center;
+            border-radius: 20px;
+            border: $lab1-apply_color-button-font-border-color solid 3px;
+            background-color: #00000000;
+            color: $lab1-apply_color-button-font-border-color;
+        }
+    
+        .range-form-submit-button:hover {
+            border: $lab1-apply_color-button-font-border-color solid 3px !important;
+            color: $lab1-apply_color-button-font-border-color !important;
+            background-color: $lab1-apply_color-button-hover-background-color !important;
+        }
+    }
+}
