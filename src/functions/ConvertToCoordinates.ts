@@ -1,4 +1,4 @@
-import { RectangleCoordinates } from "../classes/lab3-classes/RectangleCoordinates";
+import { RectangleCoordinatesSimplified } from "../classes/lab3-classes/RectangleCoordinates";
 import { TriangleCoordinates } from "../classes/lab3-classes/TriangleCoordinates";
 
 export function ConvertToTriangleCoordinates(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number): TriangleCoordinates{
@@ -20,8 +20,8 @@ export function ConvertToTriangleCoordinates(x1: number, y1: number, x2: number,
     return coordinates;
 }
 
-export function ConvertToRectangleCoordinates(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, x4: number, y4: number): RectangleCoordinates{
-    const coordinates: RectangleCoordinates = {
+export function ConvertToRectangleCoordinates(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number, x4: number, y4: number): RectangleCoordinatesSimplified{
+    const coordinates: RectangleCoordinatesSimplified = {
         A: {
             x: x1 * 20,
             y: y1 * -20,

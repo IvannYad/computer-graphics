@@ -57,58 +57,56 @@ export default class SerpinskiyTriangleDrawer {
 
         this.EraseMedianTriangle(medianCoordinates);
 
-        const drawTrianglesOne = new Promise(() => {
-            this.DrawPatternAsync(level + 1, {
-                A: {
-                    x: medianCoordinates.AB.x,
-                    y: medianCoordinates.AB.y
-                },
-                B: {
-                    x: coordinates.B.x,
-                    y: coordinates.B.y
-                },
-                C: {
-                    x: medianCoordinates.BC.x,
-                    y: medianCoordinates.BC.y
-                }
-            });
-        });
+        const coordinatesOne = {
+            A: {
+                x: medianCoordinates.AB.x,
+                y: medianCoordinates.AB.y
+            },
+            B: {
+                x: coordinates.B.x,
+                y: coordinates.B.y
+            },
+            C: {
+                x: medianCoordinates.BC.x,
+                y: medianCoordinates.BC.y
+            }
+        };
 
-        const drawTrianglesTwo = new Promise(() => {
-            this.DrawPatternAsync(level + 1, {
-                A: {
-                    x: medianCoordinates.BC.x,
-                    y: medianCoordinates.BC.y
-                },
-                B: {
-                    x: coordinates.C.x,
-                    y: coordinates.C.y
-                },
-                C: {
-                    x: medianCoordinates.CA.x,
-                    y: medianCoordinates.CA.y
-                }
-            });
-        });
+        const coordinatesTwo = {
+            A: {
+                x: medianCoordinates.BC.x,
+                y: medianCoordinates.BC.y
+            },
+            B: {
+                x: coordinates.C.x,
+                y: coordinates.C.y
+            },
+            C: {
+                x: medianCoordinates.CA.x,
+                y: medianCoordinates.CA.y
+            }
+        };
 
-        const drawTrianglesThree = new Promise(() => {
-            this.DrawPatternAsync(level + 1, {
-                A: {
-                    x: medianCoordinates.AB.x,
-                    y: medianCoordinates.AB.y
-                },
-                B: {
-                    x: coordinates.A.x,
-                    y: coordinates.A.y
-                },
-                C: {
-                    x: medianCoordinates.CA.x,
-                    y: medianCoordinates.CA.y
-                }
-            });
-        });
-        
-        await Promise.all([ drawTrianglesOne, drawTrianglesTwo, drawTrianglesThree]);
+        const coordinatesThree = {
+            A: {
+                x: medianCoordinates.AB.x,
+                y: medianCoordinates.AB.y
+            },
+            B: {
+                x: coordinates.A.x,
+                y: coordinates.A.y
+            },
+            C: {
+                x: medianCoordinates.CA.x,
+                y: medianCoordinates.CA.y
+            }
+        };
+
+        setTimeout(() => {
+            this.DrawPatternAsync(level + 1, coordinatesOne);
+            this.DrawPatternAsync(level + 1, coordinatesTwo);
+            this.DrawPatternAsync(level + 1, coordinatesThree);
+        }, 0)
     }
 
     private EraseMedianTriangle(medianCoordinates: MedianTriangleCoordinates) {

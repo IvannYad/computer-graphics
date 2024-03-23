@@ -5,12 +5,14 @@ import Lab3ControlPanel from "./lab3-control-panel/Lab3ControlPanel";
 import FractalsDrawersContext from "../../classes/lab3-classes/FractalDrawersContext";
 import SerpinskiyTriangleDrawer from "../../classes/lab3-classes/SerpinskiyTriangleDrawer";
 import ResetCanvas from "../../classes/canvas/ResetCanvas";
+import SerpinskiyCarpetDrawer from "../../classes/lab3-classes/SerpinskiyCarpetDrawer";
 
 
 export default function Lab3Page(){
     const canvasId = "lab3-canvas";
     
     useEffect(() => {
+        console.log("fff");
         const SCALING_FACTOR = 2;
         const ctx = getCanvasContext(canvasId);
         ctx.canvas.width = SCALING_FACTOR * ctx.canvas.width;
@@ -26,6 +28,7 @@ export default function Lab3Page(){
 
     const fractalsDrawersContextValues = {
         serpinskiyTriangleDrawer: new SerpinskiyTriangleDrawer(),
+        serpinskiyCarpetDrawer: new SerpinskiyCarpetDrawer(),
     }
 
     return (

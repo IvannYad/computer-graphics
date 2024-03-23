@@ -1,6 +1,10 @@
 import { Button, Form } from "antd";
 import "./SerpinskiyCarpetCreateForm.scss"
 import NumberInput from "../../../../app/common/components/number-input/NumberInput";
+import useFractalsDrawersContext from "../../../../hooks/useFractalsDrawersContext";
+import ResetCanvas from "../../../../classes/canvas/ResetCanvas";
+import { RectangleCoordinatesSimplified } from "../../../../classes/lab3-classes/RectangleCoordinates";
+import getCanvasContext from "../../../../classes/canvas/getCanvasContext";
 
 type SerpinskiyCarpetCreateFormProps = {
     isOpen: boolean;
@@ -8,8 +12,26 @@ type SerpinskiyCarpetCreateFormProps = {
 
 export default function SerpinskiyCarpetCreateForm({ isOpen }: SerpinskiyCarpetCreateFormProps){
     const [form] = Form.useForm();
-    function onFormSubmit(){
+    const { serpinskiyCarpetDrawer } = useFractalsDrawersContext();
+    async function onFormSubmit(){
+        const canvasId = "lab3-canvas";
         form.validateFields();
+
+        const context = getCanvasContext(canvasId);
+
+        const coordinates: RectangleCoordinatesSimplified = {
+            TopLeft: {
+                x: form.getFieldValue("x") * 20,
+                y: form.getFieldValue("y") * -20,
+            },
+            xSide: form.getFieldValue("xSide") * 20,
+            ySide: form.getFieldValue("ySide") * 20,
+        };
+
+        console.log(coordinates);
+        ResetCanvas(context, canvasId);
+        serpinskiyCarpetDrawer.SetParameters(context, coordinates, form.getFieldValue("depth"));
+        await serpinskiyCarpetDrawer.DrawAsync();
     }
 
     if (!isOpen) {
@@ -28,20 +50,12 @@ export default function SerpinskiyCarpetCreateForm({ isOpen }: SerpinskiyCarpetC
                 form={form}
             >
                 <div className="input-row">
-                    <NumberInput name="x1" label="X1" min={-20.00} max={20.00}/>
-                    <NumberInput name="y1" label="Y1" min={-10.00} max={10.00}/>
+                    <NumberInput name="x" label="Top left X" min={-20.00} max={20.00}/>
+                    <NumberInput name="y" label="Top left Y" min={-10.00} max={10.00}/>
                 </div>
                 <div className="input-row">
-                    <NumberInput name="x2" label="X2" min={-20.00} max={20.00}/>
-                    <NumberInput name="y2" label="Y2" min={-10.00} max={10.00}/>
-                </div>
-                <div className="input-row">
-                    <NumberInput name="x3" label="X3" min={-20.00} max={20.00}/>
-                    <NumberInput name="y3" label="Y3" min={-10.00} max={10.00}/>
-                </div>
-                <div className="input-row">
-                    <NumberInput name="x4" label="X4" min={-20.00} max={20.00}/>
-                    <NumberInput name="y4" label="Y4" min={-10.00} max={10.00}/>
+                    <NumberInput name="xSide" label="X side" min={1} max={40.00}/>
+                    <NumberInput name="ySide" label="Y side" min={1} max={20.00}/>
                 </div>
                 <div className="input-row">
                     <NumberInput name="depth" label="Depth" min={1} max={20.00}/>
@@ -49,7 +63,6 @@ export default function SerpinskiyCarpetCreateForm({ isOpen }: SerpinskiyCarpetC
                 <div className="input-row">
                     <Button htmlType="submit" className="form-submit-button">Draw</Button>
                 </div>
-
             </Form>
         </>
     )   
