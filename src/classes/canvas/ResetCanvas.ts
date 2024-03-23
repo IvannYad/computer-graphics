@@ -15,8 +15,8 @@ export default function ResetCanvas(canvasContext: CanvasRenderingContext2D, can
 }
 
 export function CreateCanvasForCutomFractal(canvasContext: CanvasRenderingContext2D) {
-    canvasContext.canvas.width = 300;
-    canvasContext.canvas.height = 300;
+    canvasContext.canvas.width = 400;
+    canvasContext.canvas.height = 400;
     canvasContext.clearRect(0, 0, canvasContext.canvas.width, canvasContext.canvas.height);
     canvasContext.fillStyle = "#DDDCDD";
     canvasContext.fillRect(0, 0,canvasContext.canvas.width, canvasContext.canvas.height);

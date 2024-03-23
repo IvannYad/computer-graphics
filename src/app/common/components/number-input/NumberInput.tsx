@@ -34,7 +34,7 @@ export default function NumberInput({ name, label, min, max }: CoordinateInputPr
             <Input 
                 className="input"
                 type="number"
-                step={0.01}
+                step={0.0001}
                 min={min}
                 max={max}
             />

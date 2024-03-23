@@ -5,15 +5,17 @@ export default class CustomFractalDrawer {
     private _context: CanvasRenderingContext2D | null = null;
     private _maxIterations: number | null = null;
     private _initialPoint: ComplexPoint | null = null;
+    private _bound: number | null = null;
     private zoom = 1; 
     private moveX = 0;
     private moveY = 0;
     
 
-    public SetParameters (context: CanvasRenderingContext2D, maxIterations: number, initialPoint: ComplexPoint) {
+    public SetParameters (context: CanvasRenderingContext2D, maxIterations: number, bound: number, initialPoint: ComplexPoint) {
         this._context = context;
         this._maxIterations = maxIterations;
         this._initialPoint = initialPoint;
+        this._bound = bound;
     }
 
     public Draw(){
@@ -21,11 +23,12 @@ export default class CustomFractalDrawer {
             return;
         }
 
-        //const cRe = this._initialPoint.real;
-        //const cIm = this._initialPoint.imag;
-        const cRe = -0.1380;
-        const cIm = 0.418;
+        const cRe = this._initialPoint.real;
+        const cIm = this._initialPoint.imag;
+        //const cRe = -0.1380;
+        //const cIm = 0.418;
 
+        console.log(cRe, cIm);
         this.DrawFractalPart(cRe, cIm);
 
         
@@ -39,7 +42,7 @@ export default class CustomFractalDrawer {
         for (let y = 0; y < this._context.canvas.height; y++) {
             setTimeout(() => {
                 for (let x = 0; x < this._context!.canvas.width; x++) {
-                    if (!this._context || !this._maxIterations || !this._initialPoint) {
+                    if (!this._context || !this._maxIterations || !this._initialPoint || !this._bound) {
                         return;
                     }
     
@@ -56,12 +59,11 @@ export default class CustomFractalDrawer {
                         newRe = Math.cosh(oldRe) * Math.cos(oldIm) + cRe;
                         newIm = Math.sinh(oldRe) * Math.sin(oldIm) + cIm;
     
-                        if((newRe * newRe + newIm * newIm) > 4) break;
+                        if((newRe * newRe + newIm * newIm) > this._bound) break;
                         
                     }
     
                     const rgbColor = this.HSVtoRGB( i / this._maxIterations, 1, (+(i < this._maxIterations)));
-                    console.log(rgbColor);
                     this.drawPoint(x, y, `rgb(${rgbColor.r},${rgbColor.g},${rgbColor.b})`);
                 }
             }, 0)
