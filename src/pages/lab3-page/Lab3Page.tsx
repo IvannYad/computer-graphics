@@ -1,34 +1,25 @@
 import { useEffect } from "react";
 import "./Lab3Page.scss"
-import getCanvasContext from "../../classes/canvas/getCanvasContext";
 import Lab3ControlPanel from "./lab3-control-panel/Lab3ControlPanel";
 import FractalsDrawersContext from "../../classes/lab3-classes/FractalDrawersContext";
 import SerpinskiyTriangleDrawer from "../../classes/lab3-classes/SerpinskiyTriangleDrawer";
 import ResetCanvas from "../../classes/canvas/ResetCanvas";
 import SerpinskiyCarpetDrawer from "../../classes/lab3-classes/SerpinskiyCarpetDrawer";
+import getCanvasContext from "../../classes/canvas/getCanvasContext";
+import CustomFractalDrawer from "../../classes/lab3-classes/CustomFractalDrawer";
 
 
 export default function Lab3Page(){
     const canvasId = "lab3-canvas";
     
     useEffect(() => {
-        console.log("fff");
-        const SCALING_FACTOR = 2;
-        const ctx = getCanvasContext(canvasId);
-        ctx.canvas.width = SCALING_FACTOR * ctx.canvas.width;
-        ctx.canvas.height = SCALING_FACTOR * ctx.canvas.height;
-        ctx.scale(SCALING_FACTOR, SCALING_FACTOR);
-        const transX = 400;
-        const transY = 200;
-        console.log(transX);
-        console.log(transY);
-        ctx.translate(transX, transY);
-        ResetCanvas(ctx, canvasId);
+        ResetCanvas(getCanvasContext(canvasId), canvasId);
     }, [])
 
     const fractalsDrawersContextValues = {
         serpinskiyTriangleDrawer: new SerpinskiyTriangleDrawer(),
         serpinskiyCarpetDrawer: new SerpinskiyCarpetDrawer(),
+        customFractalDrawer: new CustomFractalDrawer(),
     }
 
     return (
