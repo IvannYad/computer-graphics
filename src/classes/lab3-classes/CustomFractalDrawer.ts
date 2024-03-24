@@ -37,10 +37,7 @@ export default class CustomFractalDrawer {
         //const cRe = -0.1380;
         //const cIm = 0.418;
 
-        console.log(cRe, cIm);
         this.DrawFractalPart(cRe, cIm);
-
-        
     }
 
     private DrawFractalPart(cRe: number, cIm: number){

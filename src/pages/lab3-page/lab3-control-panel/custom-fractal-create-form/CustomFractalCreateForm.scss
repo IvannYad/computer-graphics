@@ -63,3 +63,14 @@
 .navigate-button:hover {
     background-color: $lab1-draw_circle-button-hover-background-color !important;
 }
+
+.save-button {
+    padding: 0px;
+    font-size: 16px;
+    border: $lab1-shade-button-font-border-color 2px solid !important;
+    color: $lab1-shade-button-font-border-color !important;
+}
+
+.save-button:hover {
+    background-color: $lab1-shade-button-hover-background-color !important;
+}

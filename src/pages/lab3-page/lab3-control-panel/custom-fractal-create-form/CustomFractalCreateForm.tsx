@@ -33,6 +33,17 @@ export default function CustomFractalCreateForm({ isOpen }: CustomFractalCreateF
         customFractalDrawer.Draw();
     }
 
+    function handleSave() {
+        const canvasId = "lab3-canvas";
+        const canvas = document.getElementById(canvasId) as HTMLCanvasElement;
+        const dataURL = canvas.toDataURL("png", 1);
+        
+        const a  = document.createElement('a');
+        a.href = dataURL;
+        a.download = 'image.png';
+        a.click();
+    }
+
     useEffect(() => {
         const canvasId = "lab3-canvas";
         form.validateFields();
@@ -95,11 +106,14 @@ export default function CustomFractalCreateForm({ isOpen }: CustomFractalCreateF
                 </div>
                 <div className="input-row navigate-buttons-holder">
                     <Button className="button zoom-button" onClick={() => {
-                        setZoom(zoom * 1.3);
+                        setZoom(zoom * 1.5);
                     }}>+</Button>
                     <Button className="button zoom-button" onClick={() => {
-                        setZoom(zoom / 1.3);
+                        setZoom(zoom / 1.5);
                     }}>-</Button>
+                </div>
+                <div className="input-row navigate-buttons-holder">
+                    <Button className="button save-button" onClick={() => handleSave()}>Save</Button>
                 </div>
             </div>
         </>
