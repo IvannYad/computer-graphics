@@ -6,16 +6,25 @@ export default class CustomFractalDrawer {
     private _maxIterations: number | null = null;
     private _initialPoint: ComplexPoint | null = null;
     private _bound: number | null = null;
-    private zoom = 1; 
-    private moveX = 0;
-    private moveY = 0;
+    private _zoom = 1; 
+    private _moveX = 0;
+    private _moveY = 0;
     
 
-    public SetParameters (context: CanvasRenderingContext2D, maxIterations: number, bound: number, initialPoint: ComplexPoint) {
+    public SetParameters (context: CanvasRenderingContext2D,
+        maxIterations: number,
+        bound: number,
+        initialPoint: ComplexPoint,
+        zoom: number,
+        moveX: number,
+        moveY: number) {
         this._context = context;
         this._maxIterations = maxIterations;
         this._initialPoint = initialPoint;
         this._bound = bound;
+        this._zoom = zoom;
+        this._moveX = moveX;
+        this._moveY = moveY;
     }
 
     public Draw(){
@@ -46,8 +55,8 @@ export default class CustomFractalDrawer {
                         return;
                     }
     
-                    let newRe = 1.5 * (x - this._context.canvas.width / 2) / (0.5 * this.zoom * this._context.canvas.width) + this.moveX;
-                    let newIm = (y - this._context.canvas.height / 2) / (0.5 * this.zoom * this._context.canvas.height) + this.moveY;
+                    let newRe = 1.5 * (x - this._context.canvas.width / 2) / (0.5 * this._zoom * this._context.canvas.width) + this._moveX;
+                    let newIm = (y - this._context.canvas.height / 2) / (0.5 * this._zoom * this._context.canvas.height) + this._moveY;
     
                     let i: number;
                     let oldRe;

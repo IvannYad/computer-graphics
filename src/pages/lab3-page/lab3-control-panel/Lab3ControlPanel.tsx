@@ -19,11 +19,12 @@ export default function Lab3ControlPanel(){
     useEffect(() => {
         if (isCutomFractalFormOpen) {
             const canvas = document.getElementById(canvasId);
-            canvas!.style.height = "500px";
             canvas!.style.width = "500px";
             CreateCanvasForCutomFractal(getCanvasContext(canvasId));
         }
         else {
+            const canvas = document.getElementById(canvasId);
+            canvas!.style.width = "100%";
             ResetCanvas(getCanvasContext(canvasId), canvasId);
         }
     }, [isCutomFractalFormOpen])
