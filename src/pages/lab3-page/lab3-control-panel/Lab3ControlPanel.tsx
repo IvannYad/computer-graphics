@@ -58,7 +58,7 @@ export default function Lab3ControlPanel(){
                         setIsSerpTriangleFormOpen(false);
                         setIsSerpCarpetFormOpen(false);
                         setIsCutomFractalFormOpen(!isCutomFractalFormOpen);
-                    }}>Serpinskiy triangle</button>
+                    }}>Custom fractal</button>
                 </div>
                 <CustomFractalCreateForm isOpen={isCutomFractalFormOpen}/>
             </div>
