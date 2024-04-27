@@ -3,12 +3,14 @@ class Square{
     private _topLeft_Y: number;
     private _side: number;
     private _color: string;
+    private _angle: number;
     
-    constructor(topLeft_X: number, topLeft_Y: number, side: number, color: string){
+    constructor(topLeft_X: number, topLeft_Y: number, side: number, color: string, angle: number = 0){
         this._topLeft_X = topLeft_X;
         this._topLeft_Y = topLeft_Y;
         this._side = side;
         this._color = color;
+        this._angle = angle;
     }
 
     public updateColor(newColor: string){

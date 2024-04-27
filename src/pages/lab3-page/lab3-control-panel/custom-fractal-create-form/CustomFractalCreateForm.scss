@@ -1,0 +1,76 @@
+@import "../../../../assets/mixins.scss";
+
+.custom-fractal-create-form {
+    padding: 20px 0px;
+    .form-submit-button {
+        font-size: 16px;
+        color: $lab1-create-button-font-border-color !important;
+        border: $lab1-create-button-font-border-color 2px solid !important;
+        border-radius: 20px;
+        width: 100%;
+        height: 35px;
+        background-color: $form-input-background-color;
+    }
+
+    .form-submit-button:hover {
+        background-color: $lab1-create-button-hover-background-color !important;
+    }
+}
+
+.input-row {
+    @include flex-center;
+    gap: 10px;
+
+    .ant-form-item-label {
+        padding: 0px;
+    }
+}
+
+.navigate-buttons-holder {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.button {
+    background-color: $form-input-background-color;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.zoom-button {
+    font-size: 18px;
+    font-weight: 900;
+    text-align: center;
+    padding: 0px;
+    border: $lab1-apply_color-button-font-border-color 2px solid !important;
+    color: $lab1-apply_color-button-font-border-color !important;
+}
+
+.zoom-button:hover {
+    background-color: $lab1-apply_color-button-hover-background-color !important;
+}
+
+.navigate-button {
+    width: 110px;
+    font-size: 18px;
+    font-weight: 900;
+    text-align: center;
+    padding: 0px;
+    border: $lab1-draw_circle-button-font-border-color 2px solid !important;
+    color: $lab1-draw_circle-button-font-border-color !important;
+}
+
+.navigate-button:hover {
+    background-color: $lab1-draw_circle-button-hover-background-color !important;
+}
+
+.save-button {
+    padding: 0px;
+    font-size: 16px;
+    border: $lab1-shade-button-font-border-color 2px solid !important;
+    color: $lab1-shade-button-font-border-color !important;
+}
+
+.save-button:hover {
+    background-color: $lab1-shade-button-hover-background-color !important;
+}

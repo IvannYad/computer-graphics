@@ -3,6 +3,11 @@ export type PointType = {
     y: number;
 }
 
+export type ComplexPoint = {
+    real: number;
+    imag:number;
+};
+
 class Point{
     private _x: number;
     private _y: number;
