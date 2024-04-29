@@ -1,4 +1,5 @@
 import LABS_CONSTANTS from "../../app/common/constants/labs-constants";
+import Round from "../../functions/Round";
 import ResetCanvas from "../canvas/ResetCanvas";
 import { PointType } from "./Point";
 
@@ -13,7 +14,10 @@ class Lab5Square{
     private static intervalId: NodeJS.Timeout | null = null;
     private currentStep: number = 0;
     private isBackwardAnimationPlay: boolean = false;
-    private matrix: number[][] | null = null;
+    private shiftMatrix: number[][] | null = null;
+    private scaleMatrix: number[][] | null = null;
+    private shiftMatrixReverse: number[][] | null = null;
+    private resultAfinnyMatrix: number[][];
     
     constructor(singleSegment: number,
         center_X: number,
@@ -24,7 +28,6 @@ class Lab5Square{
         scale: number = 1){
         this.singleSegment = singleSegment;
         this.points = this.GetRotatedPoints(center_X, center_Y, side, angle);
-        this.matrix = this.GetMatrix(scale);
         this.anchorPointNumber = anchorPointNumber;
         this.scale = scale;
 
@@ -32,6 +35,14 @@ class Lab5Square{
             clearInterval(Lab5Square.intervalId);
             Lab5Square.intervalId = null;
         }
+
+        this.shiftMatrixReverse = this.GetShiftMatrix(true, this.points[anchorPointNumber].x, this.points[anchorPointNumber].y);
+        this.shiftMatrix = this.GetShiftMatrix(false,  this.points[anchorPointNumber].x, this.points[anchorPointNumber].y);
+        this.scaleMatrix = this.GetScaleMatrix(this.scale);
+        this.resultAfinnyMatrix = this.GetAffinyMatrix(this.shiftMatrixReverse, this.scaleMatrix, this.shiftMatrix);
+        console.log(this.shiftMatrix);
+        console.log(this.shiftMatrixReverse);
+        console.log(this.resultAfinnyMatrix);
     }
 
     public drawSquare(canvasContext: CanvasRenderingContext2D){
@@ -89,7 +100,7 @@ class Lab5Square{
             clearInterval(Lab5Square.intervalId);
             Lab5Square.intervalId = null;
         }
-        const anchorPoint: PointType = this.points[this.anchorPointNumber];
+        
         this.transformedPoints = [];
         for (let i = 0; i < 4; i++) {
             if (i === this.anchorPointNumber){
@@ -97,13 +108,13 @@ class Lab5Square{
                 continue;
             }
 
-            const newX = (this.matrix![0][0] * (this.points[i].x - anchorPoint.x)) +
-                (this.matrix![0][1] * (this.points[i].y - anchorPoint.y)) +
-                (this.matrix![0][2]);
-            const newY = (this.matrix![1][0] * (this.points[i].x - anchorPoint.x)) +
-                (this.matrix![1][1] * (this.points[i].y - anchorPoint.y)) +
-                (this.matrix![1][2]);
-            this.transformedPoints.push({x:newX + anchorPoint.x, y:newY + anchorPoint.y});
+            const newX = this.resultAfinnyMatrix[0][0] * this.points[i].x + 
+                this.resultAfinnyMatrix[0][1] * this.points[i].y + 
+                this.resultAfinnyMatrix[0][2];
+            const newY = this.resultAfinnyMatrix[1][0] * this.points[i].x + 
+                this.resultAfinnyMatrix[1][1] * this.points[i].y + 
+                this.resultAfinnyMatrix[1][2];
+            this.transformedPoints.push({ x:newX, y:newY });
         }
 
         this.animationStep = [];
@@ -161,10 +172,10 @@ class Lab5Square{
     }
 
     public getMatrixString(){
-        if (this.matrix) {
-            let matrixStringified = "[ " + this.matrix[0].toString() + " ]\n";
-            matrixStringified += "[ " + this.matrix[1].toString() + " ]\n";
-            matrixStringified += "[ " + this.matrix[2].toString() + " ]\n";
+        if (this.resultAfinnyMatrix) {
+            let matrixStringified = `[${Round(this.resultAfinnyMatrix[0][0], 2)}\t ${Round(this.resultAfinnyMatrix[0][1], 2)}\t ${Round(this.resultAfinnyMatrix[0][2], 2)}\t]\n`;
+            matrixStringified += `[${Round(this.resultAfinnyMatrix[1][0], 2)}\t ${Round(this.resultAfinnyMatrix[1][1], 2)}\t ${Round(this.resultAfinnyMatrix[1][2], 2)}\t]\n`;
+            matrixStringified += `[${Round(this.resultAfinnyMatrix[2][0], 2)}\t ${Round(this.resultAfinnyMatrix[2][1], 2)}\t ${Round(this.resultAfinnyMatrix[2][2], 2)}\t]\n`;
             return matrixStringified;
         }
 
@@ -184,13 +195,52 @@ class Lab5Square{
         return rotatedPoints;
     }
 
-    private GetMatrix(scale: number) {
-        const matr: number[][] = [];
-        matr.push([scale, 0, 0]);
-        matr.push([0, scale, 0]);
-        matr.push([0, 0, 1]);
+    private GetShiftMatrix(isReverse: boolean, xShift: number, yShift: number){
+        const matrix: number[][] = [];
+        matrix.push([1, 0, isReverse ? -xShift : xShift]);
+        matrix.push([0, 1, isReverse ? -yShift : yShift]);
+        matrix.push([0, 0, 1]);
 
-        return matr;
+        return matrix;
+    }
+
+    private GetScaleMatrix(scale: number){
+        const matrix: number[][] = [];
+        matrix.push([scale, 0, 0]);
+        matrix.push([0, scale, 0]);
+        matrix.push([0, 0, 1]);
+
+        return matrix;
+    }
+
+    private GetAffinyMatrix(shiftReverseMatrix: number[][], scaleMatrix: number[][], shiftMatrix: number[][]){
+        let result: number[][] = this.multiplyMatrices(shiftMatrix, scaleMatrix);
+        result = this.multiplyMatrices(result, shiftReverseMatrix);
+        return result;
+    }
+
+    private multiplyMatrices(matrix1: number[][], matrix2: number[][]): number[][] {
+        const result: number[][] = [];
+        const rows1 = matrix1.length;
+        const cols1 = matrix1[0].length;
+        const rows2 = matrix2.length;
+        const cols2 = matrix2[0].length;
+    
+        if (cols1 !== rows2) {
+            throw new Error("Number of columns in the first matrix must be equal to the number of rows in the second matrix.");
+        }
+    
+        for (let i = 0; i < rows1; i++) {
+            result[i] = [];
+            for (let j = 0; j < cols2; j++) {
+                result[i][j] = 0;
+                for (let k = 0; k < cols1; k++) {
+                    result[i][j] += matrix1[i][k] * matrix2[k][j];
+                }
+            }
+        }
+    
+        return result;
     }
 }
 
